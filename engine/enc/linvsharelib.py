@@ -19,6 +19,16 @@ def get_uint16(buf, off):
 def get_uint32(buf, off):
     return struct.unpack('<L', buf[off:off+4])[0]
 
+def vprint(header, section=None, msg=None):
+    if header:
+        print '[*] %s' % header
+
+    if section:
+        if len(msg) > 50:
+            new_msg = msg[:22] + ' ... ' + msg[-22:]
+        else:
+            new_msg = msg
+        print '    [-] %-20s: %s' % (section, new_msg)
 
 class LVModule:
     def init(self, modulePath):
